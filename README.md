@@ -6,7 +6,7 @@ LHCb RUN-II topological trigger upgrading
 <img src='https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/triggers-system.PNG' width=250 alt='LHCb trigger system' />
 
 ## LHCb trigger system RUN-II: upgrading
-For RUN-II new scheme is applyed:
+For RUN-II new scheme is applied:
 
 * HLT1 track
 * HLT1 2-body 
