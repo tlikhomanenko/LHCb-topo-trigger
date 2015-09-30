@@ -2,7 +2,7 @@
 LHCb RUN-II topological trigger upgrading
 
 ## LHCb trigger system RUN-I
-![LHCb trigger system](https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/triggers-system.PNG)
+![LHCb trigger system](https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/triggers-system.PNG = 100x300)
 
 ## LHCb trigger system RUN-II: upgrading
 For RUN-II new scheme is applyed:
