@@ -43,6 +43,11 @@ For RUN-II new scheme is applied:
 ## Results
 ![Comparison HLT2 efficiency (HLT-high level trigger) relation to HLT1 between Run 1 and  new trigger system (without random forest trick). These channels are reconstructible signal decays with pt(B) > 2 GeV and tau(B) > 0.2 ps.](https://github.com/tata-antares/LHCb-topo-trigger/raw/master/img/LHCb_triggers.png)
 
+## Reproducibility
+* 
+* create folder 
 
-
+## Requirements
+* [rep](http://github.com/yandex/rep)
+* [rep_ef](https://github.com/anaderi/REP_EF)
 
