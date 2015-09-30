@@ -44,8 +44,12 @@ For RUN-II new scheme is applied:
 ![Comparison HLT2 efficiency (HLT-high level trigger) relation to HLT1 between Run 1 and  new trigger system (without random forest trick). These channels are reconstructible signal decays with pt(B) > 2 GeV and tau(B) > 0.2 ps.](https://github.com/tata-antares/LHCb-topo-trigger/raw/master/img/LHCb_triggers.png)
 
 ## Reproducibility
-* 
-* create folder 
+* download root files to folder *datasets*
+* run [preprocessing](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/0_Preprocessing.ipynb) to create .csv files with tracks and SVRs 
+* [HLT1 track](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT1-track.ipynb) creates models and plots for *HLT1 track* trigger
+* [HLT1 2-body](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT1.ipynb) creates models and plots for *HLT1 2-body* trigger
+* [HLT2 n-body] (https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT2.ipynb) creates models and plots for *HLT2 n-body* trigger
+* [BBDT and post-pruning](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT2-TreesPruning.ipynb) creates production models with BBDT format and post pruning for *HLT2 n-body*
 
 ## Requirements
 * [rep](http://github.com/yandex/rep)
