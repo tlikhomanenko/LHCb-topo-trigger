@@ -1,11 +1,16 @@
 # LHCb-topo-trigger
 LHCb RUN-II topological trigger upgrading
 
+## LHCb trigger system RUN-I
+![LHCb trigger system](https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/triggers-system.PNG)
+
+## LHCb trigger system RUN-II: upgrading
 For RUN-II new scheme is applyed:
 
 * HLT1 track
 * HLT1 2-body 
 * HLT2 n-body
+![new topo scheme](https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/sheme.png)
 
 ## LHC
 * Sample: one proton-proton bunches collision, called Event (40MHz)
@@ -20,6 +25,8 @@ For RUN-II new scheme is applyed:
   * all decays are used in *HLT1 2-body* and *HLT1 track* training
   * six types of decays are used for *HLT2 n-body* training and all for testing
 * Minimum bias data (real data for a small period of time) are used as background data
+* Event is interesting from physical point of view if it contains at least one SVR, where searched decay happens
+![Event which passes trigger system](https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/triggers-svg.png)
 
 ## ML problem
 * Output rate is fixed, thus, false positive rate (FPR) for events is fixed
