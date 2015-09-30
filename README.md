@@ -39,6 +39,18 @@ For RUN-II new scheme is applied:
 
 <img src='https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/roc_events.png' width=550 alt='ROC curve interpretation' />
 
+## Production trigger system
+There are two possibilities to speed up prediction operation for production stage:
+* Bonsai boosted decision tree format (BBDT)
+  * Features hashing using bins before training 
+  * Converting decision trees to n-dimensional table (lookup table)
+  * Table size is limited in RAM, thus count of bins for each features should be small
+  * Discretization reduces quality
+* Post-pruning (MatrixNet includes several thousand trees)
+  * Train MatrixNet with several thousands trees
+  * Reduce this amount of trees to a hundred
+  * Greedily choose trees in a sequence from the initial ensemble to minimize a modified loss function (exploss for background and logloss for signal)
+  * Change values in leaves (tree structure is preserved)
 
 ## Results
 ![Comparison HLT2 efficiency (HLT-high level trigger) relation to HLT1 between Run 1 and  new trigger system (without random forest trick). These channels are reconstructible signal decays with pt(B) > 2 GeV and tau(B) > 0.2 ps.](https://github.com/tata-antares/LHCb-topo-trigger/raw/master/img/LHCb_triggers.png)
