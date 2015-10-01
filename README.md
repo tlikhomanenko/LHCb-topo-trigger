@@ -33,20 +33,20 @@ For RUN-II new scheme is applied:
 <img src='https://raw.githubusercontent.com/tata-antares/LHCb-topo-trigger/master/img/triggers-svg.png' width=250 alt='Event which passes trigger system' />
 
 ## Features:
-SumPT (sumpt): sum of transverse momentums (pt) for all tracks in the SVR;
-MCOR (mcor): "corrected" mass of the SVR;
-IPChi2 (ipchi2): impact parameter chi2 of the SVR;
-MinPT (minpt): the minimum of tracks pt in the SVR;
-FDChi2 (fdchi2): flight distance chi2 of the SVR from the p-p collision;
-NIPChi2LT16 (nlt16):  number of tracks in the primary vertex with IPChi2 < 16;
-N (n): number of tracks in the SVR;
-NHLT1 (n1trk): number of tracks passing HLT1 (high level trigger first stage);
-VChi2 (chi2): vertex chi2 of the SVR;
-Eta (eta): pseudorapidity;
-PT (pt): transverse momentum;
-M (m): mass of the SVR;
-MinFDR (fdr): min radial (x-y plane) flight distance to any p-p collision;
-SumIPchi2 (sumipchi2): sum of IPchi2 for all tracks in the SVR;
+* SumPT (sumpt): sum of transverse momentums (pt) for all tracks in the SVR;
+* MCOR (mcor): "corrected" mass of the SVR;
+* IPChi2 (ipchi2): impact parameter chi2 of the SVR;
+* MinPT (minpt): the minimum of tracks pt in the SVR;
+* FDChi2 (fdchi2): flight distance chi2 of the SVR from the p-p collision;
+* NIPChi2LT16 (nlt16):  number of tracks in the primary vertex with IPChi2 < 16;
+* N (n): number of tracks in the SVR;
+* NHLT1 (n1trk): number of tracks passing HLT1 (high level trigger first stage);
+* VChi2 (chi2): vertex chi2 of the SVR;
+* Eta (eta): pseudorapidity;
+* PT (pt): transverse momentum;
+* M (m): mass of the SVR;
+* MinFDR (fdr): min radial (x-y plane) flight distance to any p-p collision;
+* SumIPchi2 (sumipchi2): sum of IPchi2 for all tracks in the SVR;
 
 ## ML problem
 * Output rate is fixed, thus, false positive rate (FPR) for events is fixed
