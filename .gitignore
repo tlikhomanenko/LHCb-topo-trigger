@@ -1,0 +1,7 @@
+*.root
+*.log
+config
+*.csv
+.ipynb_checkpoints/
+scripts/generate_csv
+scripts/skim
