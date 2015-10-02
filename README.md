@@ -80,6 +80,6 @@ There are two possibilities to speed up prediction operation for production stag
 * [BBDT and post-pruning](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT2-TreesPruning.ipynb) creates production models with BBDT format and post pruning for *HLT2 n-body*
 
 ## Requirements
-* [rep](http://github.com/yandex/rep)
-* [rep_ef](https://github.com/anaderi/REP_EF)
+* [rep](http://github.com/yandex/rep) 0.6.3
+* [rep_ef](https://github.com/anaderi/REP_EF) 0.6.2
 
