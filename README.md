@@ -82,4 +82,4 @@ There are two possibilities to speed up prediction operation for production stag
 ## Requirements
 * [rep](http://github.com/yandex/rep) 0.6.3
 * [rep_ef](https://github.com/anaderi/REP_EF) 0.6.2
-
+* [hep_ml](https://github.com/arogozhnikov/hep_ml) 0.3.0
