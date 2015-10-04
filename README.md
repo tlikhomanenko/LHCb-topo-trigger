@@ -78,6 +78,7 @@ There are two possibilities to speed up prediction operation for production stag
 * [HLT1 2-body](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT1.ipynb) creates models and plots for *HLT1 2-body* trigger
 * [HLT2 n-body] (https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT2.ipynb) creates models and plots for *HLT2 n-body* trigger
 * [BBDT and post-pruning](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/HLT2-TreesPruning.ipynb) creates production models with BBDT format and post pruning for *HLT2 n-body*
+* [BBDT format](https://github.com/tata-antares/LHCb-topo-trigger/blob/master/BBDT-prepare.ipynb) creates *.bbdt* files (lookup table) from trained trees 
 
 ## Requirements
 * [rep](http://github.com/yandex/rep) 0.6.3
