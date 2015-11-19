@@ -1,5 +1,10 @@
 # LHCb-topo-trigger
-[LHCb RUN-II topological trigger upgrading](http://arxiv.org/pdf/1510.00572v1.pdf)
+LHCb RUN-II topological trigger upgrading
+
+## Links
+
+* If you are interested in details, see [paper](http://arxiv.org/pdf/1510.00572v1.pdf)
+
 
 ## LHCb trigger system RUN-I
 
