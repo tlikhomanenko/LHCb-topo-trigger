@@ -79,7 +79,7 @@ def select_trees(X, y, sample_weight, initial_classifier, iterations=100,
     features = initial_classifier.features
 
     old_trees = []
-    mn_applier = _matrixnetapplier.MatrixnetClassifier(BytesIO(initial_classifier.formula_mx))
+    mn_applier = _matrixnetapplier.MatrixnetApplier(BytesIO(initial_classifier.formula_mx))
     for depth, n_trees, iterator_trees in mn_applier.iterate_trees():
         for tree in iterator_trees:
             old_trees.append(tree)
@@ -116,7 +116,7 @@ def select_trees(X, y, sample_weight, initial_classifier, iterations=100,
     # return ShortenedClassifier(features, new_trees)
     new_formula_mx = convert_trees_to_mx(new_trees, initial_classifier.formula_mx)
     # function returns features used in formula and new formula_mx
-    return features, new_formula_mx, _matrixnetapplier.MatrixnetClassifier(BytesIO(new_formula_mx))
+    return features, new_formula_mx, _matrixnetapplier.MatrixnetApplier(BytesIO(new_formula_mx))
 
 
 # class ShortenedClassifier(Classifier):
