@@ -19,7 +19,10 @@
 %                                     also used for the TOC unless
 %                                     \toctitle is used
 %
-\author{Tatiana Likhomanenko\inst{1, 2, 3} \email{tatiana.likhomanenko@cern.ch} \and Philip Ilten\inst{5} \and Egor Khairullin\inst{1, 4} \and Alex Rogozhnikov\inst{1, 2} \and Andrey Ustyuzhanin\inst{1, 2, 3, 4} \and Michael Williams\inst{5} \email{mwill@mit.edu}}
+\author{Tatiana Likhomanenko\inst{1, 2, 3} \email{tatiana.likhomanenko@cern.ch} \and Michael Williams\inst{4} \email{mwill@mit.edu}}
+
+%\and Philip Ilten\inst{5} \and Egor Khairullin\inst{2, 4} \and Alex Rogozhnikov\inst{1, 2} \and Andrey Ustyuzhanin\inst{1, 2, 3, 4}
+
 \authorrunning{Ivar Ekeland et al.} % abbreviated author list (for running head)
 %
 %%%% list of authors for the TOC (use if author list has to be modified)
@@ -34,14 +37,14 @@
 % Laboratoire d'Analyse Num\'{e}rique, B\^{a}timent 425,\\
 % F-91405 Orsay Cedex, France}
 
-\institute{ Yandex School of Data Analysis (YSDA), RU
+\institute{ National Research University Higher School of Economics (HSE), RU
 \and
-National Research University Higher School of Economics (HSE), RU
+Yandex School of Data Analysis (YSDA), RU
 \and 
 NRC "Kurchatov Institute", RU
 \and 
-Moscow Institute of Physics and Technology, Moscow, RU
-\and 
+%Moscow Institute of Physics and Technology, Moscow, RU
+%\and 
 Massachusetts Institute of Technology, US}
 
 
@@ -49,7 +52,7 @@ Massachusetts Institute of Technology, US}
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-The LHCb trigger system plays a key role in selecting events (proton-proton collisions) to store them into memory for further processing. It should choose several thousands events per second among all detected by LHCb. The main b-physics trigger algorithm (should select events with B-meson decays) used by the LHCb experiment is a so-called topological trigger. In the LHC Run 1, this trigger, which utilized a simple boosted decision tree algorithm, selected a nearly 100\% pure sample of b-hadrons with a typical efficiency of 60-70\%; its output was used in about 60\% of LHCb papers. In the paper \cite{run2_topo} we presented studies carried out to optimize the topological trigger for LHC Run 2. Trigger data have a specific structure and that is why necessary quality measure was proposed. In this paper we investigate the presense of noisy samples in data and propose several ways to reduce this noise. Anoter side of the trigger system is a real-time prediction operation: it should be very fast. In the paper \cite{run2_topo} two approaches how to speedup a prediction operation and to preserve the quality as possible were considered: bonsai boosted decision tree format (used in Run 1) and decision trees post prunning. In this paper we analyse behaviour of the cleaned up samples for these two approaches. As a result, we demonstrate that removing of noise can still improve reoptimized topological trigger on the Run 1 performance for a wide range of b-hadron decays.
+The LHCb trigger system plays a key role in selecting events (proton-proton collisions) to store them into memory for further processing. It should choose several thousands events per second among all detected by LHCb. The main b-physics trigger algorithm (should select events with B-meson decays) used by the LHCb experiment is a so-called topological trigger. In the LHC Run 1, this trigger, which utilized a simple boosted decision tree algorithm, selected a nearly 100\% pure sample of b-hadrons with a typical efficiency of 60-70\%; its output was used in about 60\% of LHCb papers. In the paper \cite{run2_topo} we presented studies carried out to optimize the topological trigger for LHC Run 2. Trigger data have a specific structure and that is why necessary quality measure was proposed. In this paper we investigate the presense of noisy samples in data and propose several ways to reduce this noise. Anoter side of the trigger system is a real-time prediction operation: it should be very fast. In the paper \cite{run2_topo} two approaches how to speedup a prediction operation and to preserve the quality as possible were considered: bonsai boosted decision tree format (used in Run 1), BBDT, and decision trees post prunning. In this paper we analyse behaviour of the cleaned up samples for these two approaches. As a result, we demonstrate that removing of noise can still improve reoptimized topological trigger on the Run 1 performance for a wide range of b-hadron decays.
 
 \keywords{high energy physics, machine learning, LHCb trigger system}
 \end{abstract}
@@ -444,10 +447,10 @@ This approach was applied to the topological trigger HLT2 (n-body, $n \geq 2$~).
 \begin{figure}
 	\begin{center}
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{}
+    		\includegraphics[width=\textwidth]{../../img/roc_training_top} \caption{}
     	\end{subfigure} %forest_sel_top_train} 
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{} %forest_sel_top}
+    		\includegraphics[width=\textwidth]{../../img/roc_all_top} \caption{} %forest_sel_top}
     	\end{subfigure}
     \end{center}
   \caption{Comparison between the original algorithm (\texttt{base}) and the random forest preselection approach: \texttt{forest selection, top 1} --- preselect for each event a secondary vertex with the greatest random forest prediction; \texttt{forest selection, top 2} --- preselect for each event two secondary vertices with the greatest random forest predictions. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:forest_simple}
@@ -455,14 +458,14 @@ This approach was applied to the topological trigger HLT2 (n-body, $n \geq 2$~).
 
 Because data are the mixture of several B-decays and these modes have different recognition quality there are several possible approaches to clean up the data:
 \begin{itemize}
-	\item Do preselection only for well recognized B-decays (in our case there are 4 well determined B-decay), Figure \ref{fig:forest_partial}:
+	\item Do preselection only for well recognized B-decays (in our case there are 4 well determined B-decay), Figure~\ref{fig:forest_partial}:
 		\begin{enumerate}
 			\item train random forest on the full training data;
 			\item in each well determined mode choose for each signal-like event one-two secondary vertices which have the greatest random forest predictions (in the training data); for each non-well determined modes in the trainig data take all secondary vertices;
 			\item train original algorithm on the selected training signal-like samples and all training background-like samples.
 		\end{enumerate}
 
-	\item Use different random forests for preselections depending on the mode, Figure \ref{fig:forest_channel}:
+	\item Use different random forests for preselections depending on the mode, Figure~\ref{fig:forest_channel}:
 	\begin{enumerate}
 			\item for each mode train random forest on the training B-decay mode samples and full background-like samples;
 			\item choose for each signal-like event one-two secondary vertices which have the greatest random forest (corresponding to the event's mode type) predictions (in the training data);
@@ -474,10 +477,10 @@ Because data are the mixture of several B-decays and these modes have different 
 \begin{figure}
 	\begin{center}
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{}
+    		\includegraphics[width=\textwidth]{../../img/roc_training_top_partial} \caption{}
     	\end{subfigure} %forest_sel_top_train} 
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{} %forest_sel_top}
+    		\includegraphics[width=\textwidth]{../../img/roc_all_top_partial} \caption{} %forest_sel_top}
     	\end{subfigure}
     \end{center}
   \caption{Comparison between the original algorithm (\texttt{base}) and the random forest preselection approach: \texttt{forest selection partial, top 1} , \texttt{forest selection partial, top 2}. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:forest_partial}
@@ -487,35 +490,64 @@ Because data are the mixture of several B-decays and these modes have different 
 \begin{figure}
 	\begin{center}
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{}
+    		\includegraphics[width=\textwidth]{../../img/roc_training_top_forest} \caption{}
     	\end{subfigure} %forest_sel_top_train} 
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{} %forest_sel_top}
+    		\includegraphics[width=\textwidth]{../../img/roc_all_top_forest} \caption{} %forest_sel_top}
     	\end{subfigure}
     \end{center}
-  \caption{Comparison between the original algorithm (\texttt{base}) and the random forest preselection approach: \texttt{forest top 1 in channels}, \texttt{forest top 2 in channels}. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:forest_channel}
+  \caption{Comparison between the original algorithm (\texttt{base}) and the random forest preselection approach: \texttt{forest top-1 in channel}, \texttt{forest top-2 in channel}. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:forest_channel}
 \end{figure}
 
 
 \begin{figure}
 	\begin{center}
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{}
+    		\includegraphics[width=\textwidth]{../../img/roc_training_top_xgb} \caption{}
     	\end{subfigure} %forest_sel_top_train} 
     	\begin{subfigure}[b]{0.45\textwidth}
-    		\includegraphics[width=\textwidth]{../../img/roc_events.png} \caption{} %forest_sel_top}
+    		\includegraphics[width=\textwidth]{../../img/roc_all_top_xgb} \caption{} %forest_sel_top}
     	\end{subfigure}
     \end{center}
-  \caption{Comparison between the original algorithm (\texttt{base}) and the random forest preselection approach: \texttt{xgb top 1 in channels}, \texttt{xgb top 2 in channels}. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:xgb_channel}
+  \caption{Comparison between the original algorithm (\texttt{base}) and the random forest preselection approach: \texttt{xgb top-1 in channel}, \texttt{xgb top-2 in channel}. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:xgb_channel}
 \end{figure}
 
+In all of these approaches it is seen that samples cleaning up allows to improve the signal efficiency on 1.5-2\% for the considered output rates. And the ROC curve is strictly higher for these approaches. All of these models are presented together in Figure~\ref{fig:all_rocs}.
+
+\begin{figure}
+	\begin{center}
+    	\begin{subfigure}[b]{0.45\textwidth}
+    		\includegraphics[width=\textwidth]{../../img/roc_training_all} \caption{}
+    	\end{subfigure} %forest_sel_top_train} 
+    	\begin{subfigure}[b]{0.45\textwidth}
+    		\includegraphics[width=\textwidth]{../../img/roc_all} \caption{} %forest_sel_top}
+    	\end{subfigure}
+    \end{center}
+  \caption{Comparison between the original algorithm (\texttt{base}) and all proposed noise cleaninig up approaches. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:all_rocs}
+\end{figure}
 
 \section{Speedup approaches with cleaned up samples}
+The trigger system is an online system and that is why speedup approaches were investigated in \cite{run2_topo}. For these approaches we obtained some quality reduction. What is happened with the models, in which we use the noise cleaning up preprocessing, if speedup approaches are applyed?
+
+For both approaches, BBDT format and post prunning, noise cleaning up preprocessing also provides 1.5-2\% signal efficiency improvement for the considered output rates. This result is shown in Figure~\ref{fig:spedup_rocs}.
+
+\begin{figure}
+	\begin{center}
+    	\begin{subfigure}[b]{0.45\textwidth}
+    		\includegraphics[width=\textwidth]{../../img/rocs_fast_training} \caption{}
+    	\end{subfigure} %forest_sel_top_train} 
+    	\begin{subfigure}[b]{0.45\textwidth}
+    		\includegraphics[width=\textwidth]{../../img/rocs_fast_all} \caption{} %forest_sel_top}
+    	\end{subfigure}
+    \end{center}
+  \caption{Comparison between original algorithms, bbdt and prunning approaches with noise cleaning up and without. Here we used one of the cleaning up models: different random forests for preselections depending on the mode. ROC curves is produced only for six training modes on (a) and for all available B-decays on (b).}~\label{fig:speedup_rocs}
+\end{figure}
 
 \section{Conclusion}
+A simple idea about the simulated event structure allows to assume that simulated samples almost consist of noise. In the paper we demonstrated that this noise presence exists and proposed several ways how to clean up the samples and obtain the 1.5-2\% signal efficiency improvement for the considered otput rates. Moreover, we obtained strictly higher the ROC curves for our approaches.
 
 \paragraph{Notes and Comments.}
-The part of the topological trigger analysis connected with the machine learning studies and presented in this paper and \cite{run2_topo} are open source and can be found on the github (\url{https://github.com/tata-antares/LHCb-topo-trigger}).
+The part of the topological trigger analysis connected with the machine learning studies presented in this paper and \cite{run2_topo} are open source and can be found on the github (\url{https://github.com/tata-antares/LHCb-topo-trigger}).
 %
 % ---- Bibliography ----
 %
